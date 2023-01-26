@@ -11,13 +11,18 @@ class Handler implements URLHandler {
         }
         else if (url.getPath().contains("/add")) {
             String[] parameters = url.getQuery().split("=");
-            stringList.append(parameters[1]);
+            stringList.add(parameters[1]);
             return null;
         }
         else if (url.getPath().contains("/search")) {
             String[] returnList;
             String[] parameters = url.getQuery().split("=");
-            
+            for (int i = 0; i < stringList.length; i++) {
+                if (stringList[i].contains(parameters[1])) {
+                    returnList.add(stringList[i]);
+                }
+            }
+            return returnList;
         }
     }
 }
